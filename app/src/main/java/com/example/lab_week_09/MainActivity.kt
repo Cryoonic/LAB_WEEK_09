@@ -27,6 +27,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.lab_week_09.ui.theme.LAB_WEEK_09Theme
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.Alignment
+import com.example.lab_week_09.ui.theme.OnBackgroundItemText
+import com.example.lab_week_09.ui.theme.OnBackgroundTitleText
+import com.example.lab_week_09.ui.theme.PrimaryTextButton
 
 class MainActivity : ComponentActivity() {
 
@@ -94,6 +98,10 @@ fun HomeContent(
             ) {
                 Text(text = stringResource(id = R.string.enter_item))
 
+                OnBackgroundTitleText(text = stringResource(
+                    id = R.string.enter_item
+                ))
+
                 TextField(
                     value = inputField.name,
                     onValueChange = { onInputValueChange(it) },
@@ -108,14 +116,21 @@ fun HomeContent(
                 ) {
                     Text(text = stringResource(id = R.string.button_click))
                 }
+                PrimaryTextButton(text = stringResource(
+                    id = R.string.button_click
+                )) {
+                    onButtonClick()
+                }
             }
         }
         
         items(listData) { item ->
-            Text(
-                text = item.name,
-                modifier = Modifier.padding(8.dp)
-            )
+            Column (
+                modifier = Modifier.padding(vertical = 4.dp).fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                OnBackgroundItemText(text = item.name)
+            }
         }
     }
 }
