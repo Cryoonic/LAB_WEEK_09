@@ -5,7 +5,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,17 +31,32 @@ fun ItemText(text: String, color: Color) {
 }
 
 @Composable
-fun PrimaryTextButton(text: String, onClick: () -> Unit) {
-    CustomButton(text = text, textColor = Color.White, onClick = onClick)
+fun PrimaryTextButton(
+    text: String,
+    enabled: Boolean = true,
+    onClick: () -> Unit
+) {
+    CustomButton(
+        text = text,
+        textColor = Color.White,
+        enabled = enabled,
+        onClick = onClick
+    )
 }
 
 @Composable
-fun CustomButton(text: String, textColor: Color, onClick: () -> Unit) {
+fun CustomButton(
+    text: String,
+    textColor: Color,
+    enabled: Boolean = true,
+    onClick: () -> Unit
+) {
     Button(
         onClick = onClick,
+        enabled = enabled,
         modifier = Modifier.padding(8.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color.DarkGray,
+            containerColor = if (enabled) Color.DarkGray else Color.Gray,
             contentColor = textColor
         )
     ) {
